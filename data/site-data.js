@@ -22,6 +22,12 @@ window.SITE_DATA = {
         { year: "2026", title: "The Perceived Impact of Environment on Health in Italy: a Penalized Ordinal Regression Approach", detail: "M. Stival, A. Andreella, G. Bertarelli, C. Midões, S. F. Tonellato & S. Campostrini" }
       ]
     },
+     {
+      label: "Material",
+      items: [
+        { year: "2026", title: "Sport, attività fisica e dati territoriali. Quadro quantitativo, fonti statistiche e decisioni locali", detail: "Dispensa redatta per il Master ANCI Publica Management di grandi eventi sportivi e culturali",paper: "https://zenodo.org/records/23568667"},
+      ]
+    },
     {
       label: "Proceedings & discussions",
       items: [
