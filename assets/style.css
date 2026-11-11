@@ -1,38 +1,338 @@
-:root { --text:#222; --muted:#666; --line:#ddd; --link:#174f78; }
-body { color:var(--text); background:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; font-size:16px; line-height:1.65; }
-.navbar { margin-bottom:0; border:0; border-bottom:1px solid var(--line); background:#fff; }
-.navbar-default .navbar-brand { color:var(--text); font-weight:600; }
-.navbar-default .navbar-nav>li>a { color:#555; font-size:14px; }
-.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>.active>a { color:var(--text); background:#f5f5f5; }
-.navbar .container-fluid { max-width:1080px; }
-.main-container { max-width:900px !important; padding:62px 24px 80px !important; }
-a { color:var(--link); text-underline-offset:3px; }
-h1,h2,h3 { color:var(--text); font-weight:600; letter-spacing:-.015em; }
-h1 { margin:0 0 35px; padding:0 0 16px; border-bottom:1px solid var(--line); font-size:32px; }
-h2 { margin-top:42px; font-size:23px; }
-h3 { font-size:18px; }
-.home-intro { max-width:760px; }
-.home-intro p { margin-bottom:20px; font-size:18px; }
-.home-intro .position { margin-bottom:36px; color:var(--muted); font-size:15px; }
-.home-intro .profile-links { margin-top:34px; font-size:15px; }
-.accordion { border-top:1px solid var(--line); }
-.accordion:last-child { border-bottom:1px solid var(--line); }
-.accordion summary { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:15px; padding:15px 0; cursor:pointer; list-style:none; }
-.accordion summary::-webkit-details-marker { display:none; }
-.accordion-title { font-weight:600; }
-.accordion-count { color:var(--muted); font-size:13px; }
-.accordion-icon { color:var(--muted); font-size:19px; transition:transform .15s; }
-.accordion[open] .accordion-icon { transform:rotate(45deg); }
-.item-list { padding-bottom:10px; }
-.output-item,.talk-item { display:grid; grid-template-columns:60px minmax(0,1fr) auto; gap:17px; padding:14px 0; border-top:1px solid #eee; }
-.item-year { color:var(--muted); font-size:13px; }
-.item-title { margin:0 0 3px; font-size:15px; font-weight:600; line-height:1.45; }
-.item-detail { margin:0; color:var(--muted); font-size:13px; line-height:1.5; }
-.item-links { display:flex; gap:9px; align-items:start; }
-.mini-link { font-size:12px; white-space:nowrap; }
-@media (max-width:767px) {
-  .main-container { padding-top:40px !important; }
-  .home-intro p { font-size:16px; }
-  .output-item,.talk-item { grid-template-columns:45px minmax(0,1fr); }
-  .item-links { grid-column:2; }
+:root {
+  --text: #222;
+  --muted: #777;
+  --line: #ddd;
+  --link: #174f78;
+}
+
+/* ==========================================
+   BASE
+   ========================================== */
+
+body {
+  color: var(--text);
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus {
+  color: #103b5c;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================
+   NAVIGATION
+   ========================================== */
+
+.navbar {
+  margin-bottom: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.navbar .container {
+  max-width: 1080px;
+  width: 100%;
+}
+
+.navbar-default .navbar-brand {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #555;
+  font-size: 14px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active > a {
+  color: var(--text);
+  background: #f5f5f5;
+}
+
+/* ==========================================
+   MAIN CONTENT
+   ========================================== */
+
+.main-container {
+  max-width: 900px !important;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 62px 24px 80px !important;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  margin: 0 0 35px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 32px;
+}
+
+h2 {
+  margin-top: 42px;
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+/* ==========================================
+   HOME
+   ========================================== */
+
+.home-intro {
+  max-width: 760px;
+}
+
+/* Profile: photo LEFT, position RIGHT */
+
+.profile-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 22px;
+  width: 100%;
+  margin: 0 0 34px;
+  text-align: left;
+}
+
+/* Pandoc places the image inside a paragraph.
+   Control that paragraph as the flex item. */
+
+.profile-header > p:first-child {
+  flex: 0 0 100px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  text-align: left;
+}
+
+/* Profile photo */
+
+.profile-header img.profile-photo {
+  display: block;
+  width: 100px !important;
+  height: 100px !important;
+  min-width: 0;
+  max-width: 100px !important;
+  max-height: 100px;
+  margin: 0 !important;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Academic position */
+
+.profile-header .position {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: left;
+}
+
+/* Introduction paragraphs */
+
+.home-intro > p:not(.position):not(.profile-links) {
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Profile links */
+
+.home-intro .profile-links {
+  margin: 34px 0 0;
+  font-size: 15px;
+}
+
+.profile-links a {
+  white-space: nowrap;
+}
+
+/* ==========================================
+   ACCORDIONS
+   ========================================== */
+
+.accordion {
+  border-top: 1px solid var(--line);
+}
+
+.accordion:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.accordion summary {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-title {
+  font-weight: 600;
+}
+
+.accordion-count {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.accordion-icon {
+  color: var(--muted);
+  font-size: 19px;
+  transition: transform 0.15s;
+}
+
+.accordion[open] .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.item-list {
+  padding-bottom: 10px;
+}
+
+/* ==========================================
+   PUBLICATIONS AND TALKS
+   ========================================== */
+
+.output-item,
+.talk-item {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  gap: 17px;
+  padding: 14px 0;
+  border-top: 1px solid #eee;
+}
+
+.item-year {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.item-title {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.item-detail {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.item-links {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.mini-link {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 767px) {
+
+  .main-container {
+    padding: 40px 20px 65px !important;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .profile-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .profile-header > p:first-child {
+    flex: 0 0 75px;
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+  }
+
+  .profile-header img.profile-photo {
+    width: 75px !important;
+    height: 75px !important;
+    max-width: 75px !important;
+    max-height: 75px;
+  }
+
+  .profile-header .position {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .home-intro > p:not(.position):not(.profile-links) {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .home-intro .profile-links {
+    font-size: 14px;
+  }
+
+  .output-item,
+  .talk-item {
+    grid-template-columns: 45px minmax(0, 1fr);
+  }
+
+  .item-links {
+    grid-column: 2;
+  }
 }
